@@ -2,28 +2,32 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import commons.BaseActions;
+import commons.PageGeneratorManager;
+import pageUI.EmployeeListPageUI;
 
-public class EmployeeListPageObject extends BasePage{
+public class EmployeeListPageObject extends BaseActions {
 	private WebDriver driver;
-	
+
 	public EmployeeListPageObject(WebDriver driver) {
-		this.driver = this.driver;
+		super(driver);
+		this.driver = driver;
 	}
 
 	public AddEmployeePageObject clickAddEmployeeButton() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementClickable(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+		clickToElement(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+		return PageGeneratorManager.getAddEmployeePage(driver);
 	}
 
 	public void enterToEmployeeIDTextbox(String employeeID) {
-		// TODO Auto-generated method stub
-		
+		waitForElementVisible(driver, EmployeeListPageUI.EMPLOYEE_ID_TEXTBOX);
+		sendkeyToElement(driver, EmployeeListPageUI.EMPLOYEE_ID_TEXTBOX, employeeID);
 	}
 
 	public void clickToSearchButton() {
-		// TODO Auto-generated method stub
-		
+		waitForElementClickable(driver, EmployeeListPageUI.SEARCH_BUTTON);
+		clickToElement(driver, EmployeeListPageUI.SEARCH_BUTTON);
 	}
 
 	public boolean isValueDisplayedAtColumnName(String string) {

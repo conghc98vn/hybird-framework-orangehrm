@@ -2,12 +2,13 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import commons.BaseActions;
 
-public class DependentsPageObject extends BasePage{
+public class DependentsPageObject extends BaseActions {
 	private WebDriver driver;
-	
+
 	public DependentsPageObject(WebDriver driver) {
-		this.driver = this.driver;
+		super(driver);
+		this.driver = driver;
 	}
 }

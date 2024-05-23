@@ -4,11 +4,11 @@ import java.io.File;
 
 public class GlobalConstants {
 
-	public static final String DEV_USER_URL = "https://demo.nopcommerce.com/";
-	public static final String DEV_ADMIN_URL = "https://admin-demo.nopcommerce.com/";
+	public static final String USER_URL = "https://demo.nopcommerce.com/";
+	public static final String ADMIN_URL = "https://admin-demo.nopcommerce.com/";
 
-	public static final String DEV_ADMIN_USERNAME = "admin@yourstore.com";
-	public static final String DEV_ADMIN_PASSWORD = "admin";
+	public static final String ADMIN_USERNAME = "automationfc";
+	public static final String ADMIN_PASSWORD = "automationFC@123";
 	
 	public static final long SHORT_TIMEOUT = 5;
 	public static final long LONG_TIMEOUT = 30;

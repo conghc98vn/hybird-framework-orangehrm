@@ -2,12 +2,13 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import commons.BaseActions;
 
-public class ImmigrationPageObject extends BasePage{
+public class ImmigrationPageObject extends BaseActions {
 	private WebDriver driver;
-	
+
 	public ImmigrationPageObject(WebDriver driver) {
-		this.driver = this.driver;
+		super(driver);
+		this.driver = driver;
 	}
 }

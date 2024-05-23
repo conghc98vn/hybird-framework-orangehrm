@@ -2,18 +2,14 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import commons.BaseActions;
 
-public class DashboardPageObject extends BasePage {
+public class DashboardPageObject extends BaseActions {
 	private WebDriver driver;
 
 	public DashboardPageObject(WebDriver driver) {
-		this.driver = this.driver;
-	}
-
-	public EmployeeListPageObject openToPIMModule() {
-		// TODO Auto-generated method stub
-		return null;
+		super(driver);
+		this.driver = driver;
 	}
 
 }

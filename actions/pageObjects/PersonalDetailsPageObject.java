@@ -2,32 +2,29 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-import commons.BasePage;
+import commons.BaseActions;
+import pageUI.PersonalDetailsPageUI;
 
-public class PersonalDetailsPageObject extends BasePage{
+public class PersonalDetailsPageObject extends BaseActions {
 	private WebDriver driver;
-	
+
 	public PersonalDetailsPageObject(WebDriver driver) {
-		this.driver = this.driver;
+		super(driver);
+		this.driver = driver;
 	}
 
 	public String getFirstNameValue() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementVisible(driver, PersonalDetailsPageUI.EMPLOYEE_ID_TEXTBOX);
+		return getElementAttribute(driver, PersonalDetailsPageUI.FIRSTNAME_TEXTBOX, "value");
 	}
 
 	public String getLastNameValue() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementVisible(driver, PersonalDetailsPageUI.EMPLOYEE_ID_TEXTBOX);
+		return getElementAttribute(driver, PersonalDetailsPageUI.LASTNAME_TEXTBOX, "value");
 	}
 
 	public String getEmployeeIDValue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EmployeeListPageObject clickToEmployeeListButton() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementVisible(driver, PersonalDetailsPageUI.EMPLOYEE_ID_TEXTBOX);
+		return getElementAttribute(driver, PersonalDetailsPageUI.EMPLOYEE_ID_TEXTBOX, "value");
 	}
 }
