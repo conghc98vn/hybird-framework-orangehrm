@@ -2,3 +2,15 @@
 [15-05-2024 19:32:04.918 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on windows (6e525ba3-57e2-4e1d-a041-38f639660ec1)
 [15-05-2024 19:33:51.288 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = windows 10
 [15-05-2024 19:33:51.290 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on windows (bbcf503b-5d9f-49e5-9ffd-3dc198c24f6a)
+[24-05-2024 17:26:32.954 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:26:32.956 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (ad3d8e98-be80-4849-9dc0-afc4358cb5e4)
+[24-05-2024 17:29:01.767 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:29:01.768 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (fbab66f9-fbe8-4f07-b55d-260420925e2a)
+[24-05-2024 17:31:11.983 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:31:11.985 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (6baa05e8-a584-4d2e-af12-5b1399a488e9)
+[24-05-2024 17:32:52.001 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:32:52.003 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (cd6274a5-6263-47e5-9c1d-e6aad7513745)
+[24-05-2024 17:41:53.801 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:41:53.803 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (9ad5b409-8e24-4ca1-83da-6093c5b3c7ce)
+[24-05-2024 17:45:46.258 INFO com.orangehrm.pim.PIM_01_Employee] - OS name = mac os x
+[24-05-2024 17:45:46.259 INFO com.orangehrm.pim.PIM_01_Employee] - Driver instance name = firefoxdriver: firefox on mac (1f68c90d-8360-4851-a084-995161708055)

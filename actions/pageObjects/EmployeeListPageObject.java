@@ -17,6 +17,7 @@ public class EmployeeListPageObject extends BaseActions {
 	public AddEmployeePageObject clickAddEmployeeButton() {
 		waitForElementClickable(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
 		clickToElement(driver, EmployeeListPageUI.ADD_EMPLOYEE_BUTTON);
+		waitForSpinnerIconInvisible();
 		return PageGeneratorManager.getAddEmployeePage(driver);
 	}
 
@@ -30,8 +31,12 @@ public class EmployeeListPageObject extends BaseActions {
 		clickToElement(driver, EmployeeListPageUI.SEARCH_BUTTON);
 	}
 
-	public boolean isValueDisplayedAtColumnName(String string) {
-		// TODO Auto-generated method stub
-		return false;
+	public PersonalDetailsPageObject clickToEditIconByEmployeeID(String employeeID) {
+		waitForElementClickable(driver, EmployeeListPageUI.EDIT_ICON_BY_EMPLOYEE_ID, employeeID);
+		clickToElement(driver, EmployeeListPageUI.EDIT_ICON_BY_EMPLOYEE_ID, employeeID);
+		waitForSpinnerIconInvisible();
+		return PageGeneratorManager.getPersonalDetailsPage(driver);
+
 	}
+
 }

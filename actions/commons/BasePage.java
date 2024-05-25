@@ -145,10 +145,6 @@ public class BasePage {
 		return by;
 	}
 
-	public By getByXpath(String locatorValue) {
-		return By.xpath(locatorValue);
-	}
-
 	public String getDynamicLocator(String locator, String... restParams) {
 		return String.format(locator, (Object[]) restParams);
 	}
@@ -211,7 +207,7 @@ public class BasePage {
 		List<WebElement> allItems;
 
 		allItems = new WebDriverWait(driver, Duration.ofSeconds(longTimeout))
-				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByXpath(xpathChild)));
+				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(xpathChild)));
 
 		for (WebElement tempElement : allItems) {
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", tempElement);
@@ -317,6 +313,10 @@ public class BasePage {
 		return getWebElement(driver, locatorValue).isSelected();
 	}
 
+	public boolean isElementSelected(WebDriver driver, String locatorValue, String... restParams) {
+		return getWebElement(driver, getDynamicLocator(locatorValue, restParams)).isSelected();
+	}
+
 	public boolean isElementEnabled(WebDriver driver, String locatorValue) {
 		return getWebElement(driver, locatorValue).isEnabled();
 	}
@@ -385,7 +385,13 @@ public class BasePage {
 
 	public void clickToElementByJS(WebDriver driver, String locatorValue) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].click();", getWebElement(driver, locatorValue));
-		sleepInSecond(3);
+		sleepInSecond(2);
+	}
+
+	public void clickToElementByJS(WebDriver driver, String locatorValue, String... restParams) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+				getWebElement(driver, getDynamicLocator(locatorValue, restParams)));
+		sleepInSecond(2);
 	}
 
 	public void scrollToElementOnTop(WebDriver driver, String locatorValue) {
