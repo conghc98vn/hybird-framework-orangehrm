@@ -19,19 +19,19 @@ import pageObjects.DashboardPageObject;
 import pageObjects.EmployeeListPageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.PersonalDetailsPageObject;
+import pojoData.EmployeeInfo;
 import reportConfig.ExtentTestManager;
 
 public class PIM_01_Employee extends BaseTest {
 	private WebDriver driver;
 	private String browserName;
 
-	private String employeeID, firstName, lastName;
-
 	private LoginPageObject loginPage;
 	private DashboardPageObject dashboardPage;
 	private EmployeeListPageObject employeeListPage;
 	private AddEmployeePageObject addEmployeePage;
 	private PersonalDetailsPageObject personalDetailsPage;
+	private EmployeeInfo employeeInfo;
 
 	@Parameters({ "url", "browser" })
 	@BeforeClass
@@ -39,14 +39,16 @@ public class PIM_01_Employee extends BaseTest {
 		driver = getBrowserDriver(browserName, url);
 		this.browserName = browserName;
 
-		firstName = "Michel";
-		lastName = "Owen";
-		driversLicenseNumber = "123456789";
-		licenseExpiryDate = "2024-12-12";
-		nationality = "American";
-		maritalStatus = "Married";
-		dateOfBirth = "1990-12-12";
-		genderStatus = "Female";
+		employeeInfo = EmployeeInfo.getEmployee();
+
+		employeeInfo.setFirstName("Michel");
+		employeeInfo.setLastName("Owen");
+		employeeInfo.setDriversLicenseNumber("123456789");
+		employeeInfo.setLicenseExpiryDate("2024-12-12");
+		employeeInfo.setNationality("American");
+		employeeInfo.setMaritalStatus("Married");
+		employeeInfo.setDateOfBirth("1990-12-12");
+		employeeInfo.setGenderStatus("Female");
 
 		loginPage = PageGeneratorManager.getLoginPage(driver);
 
@@ -64,9 +66,9 @@ public class PIM_01_Employee extends BaseTest {
 
 		addEmployeePage = employeeListPage.clickAddEmployeeButton();
 
-		addEmployeePage.enterToFirstNameTextbox(firstName);
-		addEmployeePage.enterToLasstNameTextbox(lastName);
-		employeeID = addEmployeePage.getEmployeeID();
+		addEmployeePage.enterToFirstNameTextbox(employeeInfo.getFirstName());
+		addEmployeePage.enterToLasstNameTextbox(employeeInfo.getLastName());
+		employeeInfo.setEmployeeID(addEmployeePage.getEmployeeID());
 
 		addEmployeePage.clickSaveButton();
 
@@ -79,20 +81,21 @@ public class PIM_01_Employee extends BaseTest {
 		Assert.assertTrue(personalDetailsPage.isPersonalDetailsHeaderDisplayed());
 		personalDetailsPage.waitForSpinnerIconInvisible();
 
-		Assert.assertEquals(personalDetailsPage.getFirstNameValue(), firstName);
-		Assert.assertEquals(personalDetailsPage.getLastNameValue(), lastName);
-		Assert.assertEquals(personalDetailsPage.getEmployeeIDValue(), employeeID);
+		Assert.assertEquals(personalDetailsPage.getFirstNameValue(), employeeInfo.getFirstName());
+		Assert.assertEquals(personalDetailsPage.getLastNameValue(), employeeInfo.getLastName());
+		Assert.assertEquals(personalDetailsPage.getEmployeeIDValue(), employeeInfo.getEmployeeID());
 
 		employeeListPage = personalDetailsPage.openToPIMModule();
 
-		employeeListPage.enterToEmployeeIDTextbox(employeeID);
+		employeeListPage.enterToEmployeeIDTextbox(employeeInfo.getEmployeeID());
 		employeeListPage.clickToSearchButton();
 
 		ExtentTestManager.getTest().log(Status.INFO, "Register - Step 01: Verify Register link is displayed");
 
-		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("Id", "1", employeeID));
-		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("First (& Middle) Name", "1", firstName));
-		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("Last Name", "1", lastName));
+		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("Id", "1", employeeInfo.getEmployeeID()));
+		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("First (& Middle) Name", "1",
+				employeeInfo.getFirstName()));
+		Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("Last Name", "1", employeeInfo.getLastName()));
 
 	}
 
@@ -101,23 +104,20 @@ public class PIM_01_Employee extends BaseTest {
 		ExtentTestManager.startTest(method.getName() + "- Run on " + browserName.toUpperCase(),
 				"TC_02_Personal_Details");
 
-		personalDetailsPage = employeeListPage.clickToEditIconByEmployeeID(employeeID);
+		personalDetailsPage = employeeListPage.clickToEditIconByEmployeeID(employeeInfo.getEmployeeID());
 
-		personalDetailsPage.enterToDriversLicenseNumberTextbox(driversLicenseNumber);
-		personalDetailsPage.enterToLicenseExpiryDateTextbox(licenseExpiryDate);
-		personalDetailsPage.selectToNationalityDropdown(nationality);
-		personalDetailsPage.selectToMaritalStatusDropdown(maritalStatus);
-		personalDetailsPage.enterToDateOfBirthTextbox(dateOfBirth);
-		personalDetailsPage.clickToGenderRadioButton(genderStatus);
+		personalDetailsPage.setPersonalDetail(employeeInfo);
+
 		personalDetailsPage.clickToSaveButton();
 
 		Assert.assertTrue(addEmployeePage.isDynamicSuccessMessageDisplayed("Successfully Updated"));
 		personalDetailsPage.waitForSpinnerIconInvisible();
 
-		Assert.assertEquals(personalDetailsPage.getNationallityDropdownSelectedText(), nationality);
-		Assert.assertEquals(personalDetailsPage.getMaritalStatusDropdownSelectedText(), maritalStatus);
+		Assert.assertEquals(personalDetailsPage.getNationallityDropdownSelectedText(), employeeInfo.getNationality());
+		Assert.assertEquals(personalDetailsPage.getMaritalStatusDropdownSelectedText(),
+				employeeInfo.getMaritalStatus());
 
-		Assert.assertTrue(personalDetailsPage.isGenderStatusSelected(genderStatus));
+		Assert.assertTrue(personalDetailsPage.isGenderStatusSelected(employeeInfo.getGenderStatus()));
 
 	}
 //
@@ -165,7 +165,5 @@ public class PIM_01_Employee extends BaseTest {
 	public void afterClass() {
 //		closeBrowserDriver();
 	}
-
-	String driversLicenseNumber, licenseExpiryDate, nationality, maritalStatus, dateOfBirth, genderStatus;
 
 }

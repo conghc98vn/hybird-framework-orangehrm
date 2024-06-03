@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import commons.BaseActions;
 import pageUI.PersonalDetailsPageUI;
+import pojoData.EmployeeInfo;
 
 public class PersonalDetailsPageObject extends BaseActions {
 	private WebDriver driver;
@@ -81,5 +82,14 @@ public class PersonalDetailsPageObject extends BaseActions {
 
 	public boolean isGenderStatusSelected(String genderStatus) {
 		return isElementSelected(driver, PersonalDetailsPageUI.DYNAMIC_GENDER_RADIO_BUTTON_BY_TEXT, genderStatus);
+	}
+
+	public void setPersonalDetail(EmployeeInfo employeeInfo) {
+		enterToDriversLicenseNumberTextbox(employeeInfo.getDriversLicenseNumber());
+		enterToLicenseExpiryDateTextbox(employeeInfo.getLicenseExpiryDate());
+		selectToNationalityDropdown(employeeInfo.getNationality());
+		selectToMaritalStatusDropdown(employeeInfo.getMaritalStatus());
+		enterToDateOfBirthTextbox(employeeInfo.getDateOfBirth());
+		clickToGenderRadioButton(employeeInfo.getGenderStatus());
 	}
 }
